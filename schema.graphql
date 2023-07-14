@@ -2,11 +2,20 @@
 ### Do not make changes to this file directly
 
 
+type AuthType {
+  token: String!
+  user: User!
+}
+
 type Mutation {
   createProduct(name: String!, price: Float!): Product!
+  login(password: String!, username: String!): AuthType!
+  register(email: String!, password: String!, username: String!): AuthType!
 }
 
 type Product {
+  createdBy: User
+  creatorId: Int!
   id: Int!
   name: String!
   price: Float!
@@ -19,6 +28,5 @@ type Query {
 type User {
   email: String!
   id: Int!
-  password: String!
   username: String!
 }

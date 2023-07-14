@@ -1,10 +1,21 @@
 import { extendType, floatArg, nonNull, objectType, stringArg } from "nexus";
 import { Product } from "../entities/Product";
+import { Context } from "../types/Context";
+import { User } from "../entities/User";
 //query type schema
 export const ProductType = objectType({
   name: "Product",
   definition(t) {
-    t.nonNull.int("id"), t.nonNull.string("name"), t.nonNull.float("price");
+    t.nonNull.int("id"),
+      t.nonNull.string("name"),
+      t.nonNull.float("price"),
+      t.nonNull.int("creatorId"),
+      t.field("createdBy", {
+        type: "User",
+        resolve(parent, _args, _ctx, _info): Promise<User | null> {
+          return User.findOne({ where: { id: parent.creatorId } });
+        },
+      });
   },
 });
 
@@ -33,12 +44,18 @@ export const createProductMutation = extendType({
         name: nonNull(stringArg()),
         price: nonNull(floatArg()),
       },
-      resolve(_parents, args, _context, _info): Promise<Product> {
+      resolve(_parents, args, context: Context, _info): Promise<Product> {
         const { name, price } = args;
+        const { userId } = context;
+
+        if (!userId) {
+          throw new Error("User is not authenticated");
+        }
 
         return Product.create({
           name,
           price,
+          creatorId: userId,
         }).save();
       },
     });

@@ -3,6 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { schema } from "./schema";
 import typeormConfig from "./typeorm.config";
 import { Context } from "./types/Context";
+import { auth } from "./middlewares/auth";
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,7 +15,12 @@ const main = async () => {
   });
 
   const { url } = await startStandaloneServer(server, {
-    context: async () => ({ conn }),
+    context: async ({ req }) => {
+      const token = req?.headers?.authorization
+        ? auth(req.headers.authorization)
+        : null;
+      return { conn, userId: token?.userId };
+    },
     listen: { port: PORT as number },
   });
 

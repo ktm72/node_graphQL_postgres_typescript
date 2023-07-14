@@ -1,9 +1,13 @@
-## Connenction Authentication setup
+## Follow each branch to understand bit by bit
 
-> Install `yarn add jsonwebtoken` and `yarn add  -D @types/jsonwebtoken`
+# Clone this project
 
-> Create "Auth.ts" at graphql folder
+`git clone repo....`
 
-> Create middlewares
+# Installation
 
-> Some changes happen across the src, graphql folder also. Try to follow.
+`yarn install`
+
+# development build
+
+`yarn dev`

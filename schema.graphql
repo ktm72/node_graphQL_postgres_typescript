@@ -15,3 +15,10 @@ type Product {
 type Query {
   products: [Product!]!
 }
+
+type User {
+  email: String!
+  id: Int!
+  password: String!
+  username: String!
+}

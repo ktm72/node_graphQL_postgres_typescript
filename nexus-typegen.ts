@@ -35,6 +35,12 @@ export interface NexusGenObjects {
     price: number; // Float!
   }
   Query: {};
+  User: { // root type
+    email: string; // String!
+    id: number; // Int!
+    password: string; // String!
+    username: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -59,6 +65,12 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     products: NexusGenRootTypes['Product'][]; // [Product!]!
   }
+  User: { // field return type
+    email: string; // String!
+    id: number; // Int!
+    password: string; // String!
+    username: string; // String!
+  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -72,6 +84,12 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     products: 'Product'
+  }
+  User: { // field return type name
+    email: 'String'
+    id: 'Int'
+    password: 'String'
+    username: 'String'
   }
 }
 

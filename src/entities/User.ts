@@ -14,13 +14,13 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ unique: true })
   username!: string;
 
   @Column()
   password!: string;
 
-  @Column()
+  @Column({ unique: true })
   email!: string;
 
   //Product entity, which column in  product table

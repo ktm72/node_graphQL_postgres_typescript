@@ -1,5 +1,7 @@
 ## Follow each branch to understand bit by bit
 
+> Starter -> Product -> Connection -> Authentication
+
 # Clone this project
 
 `git clone repo....`
@@ -11,3 +13,5 @@
 # development build
 
 `yarn dev`
+
+> Open the localhost uri and play with it

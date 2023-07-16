@@ -15,3 +15,5 @@
 `yarn dev`
 
 > Open the localhost uri and play with it
+
+> Go to mutation, register first, login then and set the return token at headers authorizations to createProduct.
